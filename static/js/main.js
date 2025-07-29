@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const acquireButtons = document.querySelectorAll('.btn-highlight');
     const productModal = document.querySelector('#modal-producto');
     // ⚠️ REEMPLAZA CON TU NÚMERO DE CONTACTO (CÓDIGO DE PAÍS + NÚMERO)
-    const CONTACT_NUMBER = '573123456789'; 
+    const CONTACT_NUMBER = '573106899547'; 
 
     acquireButtons.forEach(button => {
         button.addEventListener('click', (e) => {
