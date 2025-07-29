@@ -1,0 +1,525 @@
+/* static/css/admin_style.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@400;700&family=Montserrat:wght@500;700&display=swap');
+
+:root {
+    --color-blanco: #FFFFFF;
+    --color-negro: #111111;
+    --color-gris-claro: #f4f4f4;
+    --color-lila-resalte: #C8A2C8;
+    --color-lila-hover: #b790b7;
+    --font-titulos: 'Montserrat', sans-serif;
+    --font-texto: 'Lato', sans-serif;
+}
+
+body {
+    font-family: var(--font-texto);
+    background-color: var(--color-gris-claro);
+    color: var(--color-negro);
+    margin: 0;
+}
+
+/* --- ESTILOS DE LOGIN --- */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    margin: 0 auto;
+}
+
+.login-card {
+    background-color: var(--color-blanco);
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+}
+
+.login-logo {
+    margin-bottom: 2rem;
+}
+
+.logo-main {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem; 
+    font-weight: 400;
+    color: var(--color-negro);
+}
+
+.logo-sub {
+    font-family: var(--font-titulos);
+    font-size: 0.7rem; 
+    text-transform: uppercase;
+    letter-spacing: 4px; 
+    margin-top: -5px; 
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-family: var(--font-titulos);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: var(--font-texto);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    background-color: var(--color-blanco);
+}
+
+.form-group select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23232323%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 15px top 50%;
+    background-size: .65em auto;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-lila-resalte);
+}
+
+.custom-file-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.custom-file-input-wrapper input[type="file"] {
+    display: none;
+}
+
+.custom-file-button {
+    background-color: var(--color-lila-resalte);
+    color: var(--color-blanco);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: var(--font-titulos);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.custom-file-button:hover {
+    background-color: #63d4c5;
+}
+
+#file-chosen-label {
+    font-family: var(--font-texto);
+    color: #555;
+    font-size: 0.9rem;
+}
+
+
+.btn-submit {
+    background-color: var(--color-lila-resalte);
+    color: var(--color-blanco);
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 8px;
+    font-family: var(--font-titulos);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #63d4c5;
+}
+
+.errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+    color: #e74c3c;
+    font-size: 0.9rem;
+}
+
+.back-to-site-link {
+    display: block;
+    margin-top: 1.5rem;
+    text-align: center;
+    color: #888;
+    text-decoration: none;
+    font-family: var(--font-texto);
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.back-to-site-link:hover {
+    color: var(--color-lila-resalte);
+    text-decoration: underline;
+}
+
+/* === ESTILOS PARA LA GESTIÓN DE PRODUCTOS === */
+
+.admin-header {
+    background-color: var(--color-blanco);
+    padding: 15px 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.admin-header .login-logo {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+.admin-header .logo-main {
+    font-size: 2.2rem;
+}
+
+.admin-header .logo-sub {
+    font-size: 0.6rem;
+}
+
+.admin-nav a {
+    font-family: var(--font-titulos);
+    color: var(--color-negro);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.admin-nav a:hover, .admin-nav a.active {
+    color: var(--color-lila-resalte);
+}
+
+.main-content {
+    padding: 10rem 2rem 2rem 2rem;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.form-card {
+    background-color: var(--color-blanco);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.form-card h1 {
+    font-family: var(--font-titulos);
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: var(--font-texto);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    resize: vertical;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.checkbox-group input {
+    width: auto;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.card-header h1 {
+    margin: 0;
+}
+
+.btn-add-new {
+    background-color: var(--color-lila-resalte);
+    color: var(--color-blanco);
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-family: var(--font-titulos);
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add-new:hover {
+    background-color: #63d4c5;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.product-table th, .product-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--color-gris-claro);
+    vertical-align: middle;
+}
+
+.product-table thead th {
+    font-family: var(--font-titulos);
+    font-weight: 700;
+    background-color: #fafafa;
+}
+
+.product-table tbody tr:hover {
+    background-color: #f8f8f8;
+}
+
+.product-thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-thumbnail-container {
+    cursor: pointer;
+}
+
+.action-link {
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+.action-link i {
+    font-size: 1.2rem;
+    color: var(--color-negro);
+    transition: color 0.3s ease;
+}
+
+.action-link:hover i {
+    color: #63d4c5;
+}
+
+/* === ESTILOS PARA EL MODAL === */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    background-color: var(--color-blanco);
+    padding: 2rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.hidden .modal-content {
+    transform: translateY(-20px);
+}
+
+.product-detail-modal-body {
+    text-align: center;
+}
+
+.product-detail-modal-body img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.product-detail-modal-body h2 {
+    font-family: var(--font-titulos);
+    margin: 0.5rem 0;
+}
+
+.product-detail-modal-body p {
+    color: #555;
+    line-height: 1.6;
+}
+
+.confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn-delete-confirm {
+    background-color: #e74c3c;
+    color: var(--color-blanco);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-family: var(--font-titulos);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete-confirm:hover {
+    background-color: #c0392b;
+}
+
+.btn-cancel {
+    background-color: #f4f4f4;
+    color: var(--color-negro);
+    border: 1px solid #ddd;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-family: var(--font-titulos);
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #e9e9e9;
+    border-color: #ccc;
+}
+
+
+/* ================================================================= */
+/* === ESTILOS RESPONSIVOS PARA MÓVILES === */
+/* ================================================================= */
+
+@media (max-width: 768px) {
+
+    body {
+        display: block;
+        min-height: auto;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        padding: 1rem;
+        position: relative;
+    }
+    
+    .admin-nav {
+        margin-top: 1rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .admin-nav a {
+        margin: 0 0.75rem;
+    }
+
+    .main-content {
+        padding: 1.5rem;
+        max-width: 100%;
+    }
+
+    .form-card {
+        padding: 1.5rem;
+    }
+
+    /* Ajustes para la tabla de productos (CORREGIDO) */
+    .product-table thead {
+        display: none;
+    }
+
+    .product-table, .product-table tbody, .product-table tr, .product-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .product-table tr {
+        margin-bottom: 1.5rem;
+        border: 1px solid #e9e9e9;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .product-table tr td {
+        text-align: left;
+        padding: 8px 0;
+        border-bottom: 1px solid #f1f1f1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .product-table tr td:last-child {
+        border-bottom: none;
+    }
+
+    .product-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        font-family: var(--font-titulos);
+        color: var(--color-lila-resalte);
+        font-size: 0.9rem;
+    }
+
+    .admin-header .login-logo {
+    text-align: center;
+}
+}

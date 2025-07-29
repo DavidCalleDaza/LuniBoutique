@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Productos | LuniBoutique</title>
+    <link rel="stylesheet" href="{% static 'css/admin_style.css' %}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <header class="admin-header">
+        <div class="login-logo">
+            <div>
+                <span class="logo-main">La Luni</span>
+                <span class="logo-sub">ADMIN</span>
+            </div>
+        </div>
+        <nav class="admin-nav">
+            <a href="{% url 'product_list' %}" class="active">Gestionar Productos</a>
+            <a href="{% url 'create_product' %}">Añadir Producto</a>
+            <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <div class="form-card">
+            <div class="card-header">
+                <h1>Gestionar Productos</h1>
+                <a href="{% url 'create_product' %}" class="btn-add-new">Añadir Nuevo Producto</a>
+            </div>
+
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                    <tr>
+                        <td data-label="Imagen">
+                            {% if producto.imagen %}
+                            <div class="product-thumbnail-container" 
+                                data-name="{{ producto.nombre }}" 
+                                data-description="{{ producto.descripcion|default:'No hay descripción disponible.' }}" 
+                                data-img-url="{{ producto.imagen.url }}">
+                                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="product-thumbnail">
+                            </div>
+                            {% endif %}
+                        </td>
+                        <td data-label="Nombre">{{ producto.nombre }}</td>
+                        <td data-label="Categoría">{{ producto.categoria.nombre|default:"Sin categoría" }}</td>
+                        <td data-label="Precio">${{ producto.precio|floatformat:0 }}</td>
+                        <td data-label="Acciones">
+                            <a href="{% url 'update_product' producto.id %}" class="action-link edit" title="Editar">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a href="#" class="action-link delete delete-trigger" 
+                            title="Eliminar"
+                            data-product-name="{{ producto.nombre }}" 
+                            data-delete-url="{% url 'delete_product' producto.id %}">
+                            <i class="fa-solid fa-trash-can"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="modal-overlay hidden">
+        <div class="modal-content confirm-card">
+            <h1>¿Estás seguro?</h1>
+            <p>Estás a punto de eliminar permanentemente el producto: <strong id="productNameSpan"></strong>. Esta acción no se puede deshacer.</p>
+            <form id="deleteConfirmForm" method="POST" class="confirm-actions">
+                {% csrf_token %}
+                <button type="submit" class="btn-delete-confirm">Sí, eliminar</button>
+                <button type="button" id="cancelDelete" class="btn-cancel">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="productDetailModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="product-detail-modal-body">
+                <img id="modalProductImage" src="" alt="Imagen del producto">
+                <h2 id="modalProductName"></h2>
+                <p id="modalProductDescription"></p>
+            </div>
+            <button type="button" id="closeDetailModal" class="btn-cancel" style="margin-top: 1rem;">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="{% static 'js/admin_logic.js' %}"></script>
+</body>
+</html>

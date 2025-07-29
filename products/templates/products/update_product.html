@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Producto | LuniBoutique</title>
+    <link rel="stylesheet" href="{% static 'css/admin_style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <header class="admin-header">
+        <div class="login-logo">
+            <div>
+                <span class="logo-main">La Luni</span>
+                <span class="logo-sub">ADMIN</span>
+            </div>
+        </div>
+        <nav class="admin-nav">
+            <a href="{% url 'product_list' %}">Gestionar Productos</a>
+            <a href="{% url 'create_product' %}">Añadir Producto</a>
+            <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <div class="form-card">
+            <h1>Editar Producto</h1>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="{{ form.nombre.id_for_label }}">Nombre del Producto</label>
+                    {{ form.nombre }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.categoria.id_for_label }}">Categoría</label>
+                    {{ form.categoria }}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.precio.id_for_label }}">Precio</label>
+                    {{ form.precio }}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.descripcion.id_for_label }}">Descripción</label>
+                    {{ form.descripcion }}
+                </div>
+                
+                <div class="form-group">
+                    <label>Imagen del Producto</label>
+                    <div class="custom-file-input-wrapper">
+                        {{ form.imagen }}
+                        <label for="{{ form.imagen.id_for_label }}" class="custom-file-button">Elegir archivo</label>
+                        <span id="file-chosen-label">No se eligió ningún archivo</span>
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    {{ form.disponible }}
+                    <label for="{{ form.disponible.id_for_label }}">Disponible</label>
+                </div>
+
+                <button type="submit" class="btn-submit">Guardar Cambios</button>
+            </form>
+
+            <a href="{% url 'product_list' %}" class="back-to-site-link">Volver a la lista sin guardar</a>
+        </div>
+    </div>
+
+    <script>
+        // --- LÓGICA PARA EL INPUT DE ARCHIVO PERSONALIZADO ---
+        const actualBtn = document.getElementById('{{ form.imagen.id_for_label }}');
+        if (actualBtn) {
+            const fileChosen = document.getElementById('file-chosen-label');
+            
+            // Muestra el nombre del archivo actual si ya existe
+            const currentFileLink = document.querySelector('.file-input-wrapper a');
+            if (currentFileLink && currentFileLink.href) {
+                // Extrae el nombre del archivo de la URL
+                const filename = currentFileLink.href.split('/').pop();
+                fileChosen.textContent = decodeURIComponent(filename);
+            }
+
+            actualBtn.addEventListener('change', function(){
+                if (this.files.length > 0) {
+                    fileChosen.textContent = this.files[0].name;
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
